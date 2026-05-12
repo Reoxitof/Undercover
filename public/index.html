@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>UnderCover — Elite Corp.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- ═══ ÉCRAN D'ACCUEIL ═══ -->
+  <div id="screen-home" class="screen active">
+    <div class="home-container">
+      <div class="logo-section">
+        <div class="logo-icon"><i class="fas fa-user-secret"></i></div>
+        <h1 class="logo-title">UNDER<span>COVER</span></h1>
+        <p class="logo-sub">ELITE CORP. EDITION</p>
+        <div class="gold-line"></div>
+        <p class="logo-desc">Trouvez l'infiltré parmi vous.<br>Bluffez. Déduisez. Survivez.</p>
+      </div>
+
+      <div class="home-form">
+        <label for="player-name">VOTRE NOM DE CODE</label>
+        <input type="text" id="player-name" class="input-field" placeholder="Ex: Shadow, Ghost..." maxlength="16"/>
+
+        <button class="btn-gold" id="btn-create">
+          <i class="fas fa-plus"></i> CRÉER UN SALON
+        </button>
+        <button class="btn-outline" id="btn-join-toggle">
+          <i class="fas fa-sign-in-alt"></i> REJOINDRE
+        </button>
+
+        <div id="join-section" class="join-section hidden">
+          <label for="room-code">CODE DU SALON</label>
+          <input type="text" id="room-code" class="input-field" placeholder="XXXXX" maxlength="5" style="text-transform:uppercase;text-align:center;letter-spacing:8px;font-size:20px;"/>
+          <button class="btn-gold" id="btn-join">
+            <i class="fas fa-door-open"></i> ENTRER
+          </button>
+        </div>
+      </div>
+
+      <div class="home-footer">
+        <p>Compatible FiveM • 3 à 10 joueurs</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LOBBY ═══ -->
+  <div id="screen-lobby" class="screen">
+    <div class="lobby-container">
+      <div class="lobby-header">
+        <h2 class="lobby-title">SALON</h2>
+        <div class="room-code-display">
+          <span class="room-code-label">CODE</span>
+          <span class="room-code-value" id="lobby-code">-----</span>
+          <button class="btn-copy" id="btn-copy-code"><i class="fas fa-copy"></i></button>
+        </div>
+      </div>
+
+      <div class="players-list" id="players-list"></div>
+
+      <div id="host-settings" class="settings-panel hidden">
+        <div class="card-title"><i class="fas fa-cog"></i> PARAMÈTRES</div>
+        <div class="setting-row">
+          <span>Undercovers</span>
+          <div class="setting-control">
+            <button class="btn-sm" id="uc-minus">-</button>
+            <span id="uc-count">1</span>
+            <button class="btn-sm" id="uc-plus">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <span>Mr. White</span>
+          <label class="toggle">
+            <input type="checkbox" id="toggle-mrwhite"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-gold btn-start hidden" id="btn-start">
+        <i class="fas fa-play"></i> LANCER LA PARTIE
+      </button>
+
+      <div class="lobby-waiting" id="lobby-waiting">
+        <div class="pulse-dot"></div>
+        <span>En attente du lancement...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE DE JEU (MOT + DESCRIPTION) ═══ -->
+  <div id="screen-game" class="screen">
+    <div class="game-container">
+      <div class="game-header">
+        <div class="round-badge">ROUND <span id="round-number">1</span></div>
+        <div class="game-status" id="game-status">Phase de description</div>
+      </div>
+
+      <div class="word-card" id="word-card">
+        <div class="word-card-label">VOTRE MOT</div>
+        <div class="word-card-value" id="my-word">---</div>
+        <div class="word-card-role" id="my-role-badge"></div>
+      </div>
+
+      <div class="descriptions-list" id="descriptions-list"></div>
+
+      <div class="describe-section" id="describe-section">
+        <label>DÉCRIVEZ VOTRE MOT (sans le dire !)</label>
+        <input type="text" id="description-input" class="input-field" placeholder="Un indice subtil..." maxlength="100"/>
+        <button class="btn-gold" id="btn-describe">
+          <i class="fas fa-paper-plane"></i> ENVOYER
+        </button>
+      </div>
+
+      <div class="already-described hidden" id="already-described">
+        <i class="fas fa-check-circle"></i> Description envoyée. En attente des autres...
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE DE VOTE ═══ -->
+  <div id="screen-vote" class="screen">
+    <div class="vote-container">
+      <div class="vote-header">
+        <h2 class="vote-title"><i class="fas fa-gavel"></i> VOTE</h2>
+        <p class="vote-sub">Qui est l'infiltré ?</p>
+      </div>
+
+      <div class="vote-list" id="vote-list"></div>
+
+      <div class="vote-confirm hidden" id="vote-confirm">
+        <p>Voter contre <strong id="vote-target-name"></strong> ?</p>
+        <div class="vote-confirm-btns">
+          <button class="btn-gold" id="btn-confirm-vote"><i class="fas fa-check"></i> CONFIRMER</button>
+          <button class="btn-outline" id="btn-cancel-vote"><i class="fas fa-times"></i> ANNULER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RÉSULTAT DU VOTE ═══ -->
+  <div id="screen-vote-result" class="screen">
+    <div class="result-container">
+      <div class="result-icon" id="result-icon"></div>
+      <h2 class="result-title" id="result-title"></h2>
+      <p class="result-desc" id="result-desc"></p>
+      <button class="btn-gold" id="btn-continue">CONTINUER</button>
+    </div>
+  </div>
+
+  <!-- ═══ MR. WHITE GUESS ═══ -->
+  <div id="screen-mrwhite" class="screen">
+    <div class="mrwhite-container">
+      <div class="mrwhite-icon"><i class="fas fa-ghost"></i></div>
+      <h2 class="mrwhite-title">MR. WHITE</h2>
+      <p class="mrwhite-desc">Vous avez été éliminé ! Devinez le mot des civils pour gagner.</p>
+      <input type="text" id="mrwhite-guess-input" class="input-field" placeholder="Le mot des civils..."/>
+      <button class="btn-gold" id="btn-mrwhite-guess">
+        <i class="fas fa-lightbulb"></i> DEVINER
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ FIN DE PARTIE ═══ -->
+  <div id="screen-gameover" class="screen">
+    <div class="gameover-container">
+      <div class="gameover-icon" id="gameover-icon"></div>
+      <h2 class="gameover-title" id="gameover-title"></h2>
+      <p class="gameover-reason" id="gameover-reason"></p>
+
+      <div class="words-reveal">
+        <div class="word-reveal-item">
+          <span class="word-reveal-label">MOT CIVIL</span>
+          <span class="word-reveal-value" id="reveal-civil">---</span>
+        </div>
+        <div class="word-reveal-item">
+          <span class="word-reveal-label">MOT UNDERCOVER</span>
+          <span class="word-reveal-value gold" id="reveal-undercover">---</span>
+        </div>
+      </div>
+
+      <div class="players-reveal" id="players-reveal"></div>
+
+      <button class="btn-gold" id="btn-replay">
+        <i class="fas fa-redo"></i> REJOUER
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ TOAST NOTIFICATIONS ═══ -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
