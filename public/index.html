@@ -40,8 +40,81 @@
         </div>
       </div>
 
+      <button class="btn-rules" id="btn-rules">
+        <i class="fas fa-book"></i> RÈGLES DU JEU
+      </button>
+
       <div class="home-footer">
         <p>Compatible FiveM • 3 à 10 joueurs</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ÉCRAN RÈGLES ═══ -->
+  <div id="screen-rules" class="screen">
+    <div class="rules-container">
+      <div class="rules-header">
+        <button class="btn-back" id="btn-rules-back"><i class="fas fa-arrow-left"></i></button>
+        <h2 class="rules-title">RÈGLES DU JEU</h2>
+      </div>
+
+      <div class="rules-content">
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-users"></i></div>
+          <h3>PRINCIPE</h3>
+          <p>UnderCover est un jeu de déduction sociale. Chaque joueur reçoit un <strong>mot secret</strong>. La majorité reçoit le même mot (les <span class="text-green">Civils</span>), mais un ou plusieurs joueurs reçoivent un mot différent mais similaire : ce sont les <span class="text-red">Undercovers</span>.</p>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-comment-dots"></i></div>
+          <h3>PHASE DE DESCRIPTION</h3>
+          <p>À chaque tour, chaque joueur donne <strong>un indice</strong> décrivant son mot, sans le dire directement. L'objectif est de prouver que vous avez le bon mot, tout en restant assez vague pour ne pas aider l'Undercover.</p>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-gavel"></i></div>
+          <h3>PHASE DE VOTE</h3>
+          <p>Après les descriptions, tous les joueurs <strong>votent</strong> pour éliminer celui qu'ils pensent être l'infiltré. Le joueur avec le plus de votes est éliminé et son rôle est révélé.</p>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-trophy"></i></div>
+          <h3>CONDITIONS DE VICTOIRE</h3>
+          <ul>
+            <li><span class="text-green">Civils gagnent</span> → Tous les Undercovers sont éliminés</li>
+            <li><span class="text-red">Undercovers gagnent</span> → Ils sont aussi nombreux (ou plus) que les Civils restants</li>
+          </ul>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-ghost"></i></div>
+          <h3>MR. WHITE <span class="badge-optional">OPTIONNEL</span></h3>
+          <p>Si activé, un joueur est <strong>Mr. White</strong> : il ne reçoit aucun mot (affiché "???"). Il doit bluffer en s'inspirant des descriptions des autres. S'il est éliminé, il a <strong>une chance</strong> de deviner le mot des Civils pour gagner seul.</p>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>CONSEILS</h3>
+          <ul>
+            <li>Ne soyez pas trop précis — l'Undercover pourrait comprendre votre mot</li>
+            <li>Ne soyez pas trop vague — on pourrait vous prendre pour l'infiltré</li>
+            <li>Observez les réactions et les hésitations des autres</li>
+            <li>Les mots sont toujours proches (ex: "Café" / "Thé")</li>
+          </ul>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>DÉROULEMENT</h3>
+          <div class="steps-list">
+            <div class="step-item"><span class="step-num">1</span> L'hôte crée un salon et partage le code</div>
+            <div class="step-item"><span class="step-num">2</span> Les joueurs rejoignent (3 à 10)</div>
+            <div class="step-item"><span class="step-num">3</span> L'hôte lance la partie</div>
+            <div class="step-item"><span class="step-num">4</span> Chacun reçoit son mot secret</div>
+            <div class="step-item"><span class="step-num">5</span> Tour par tour : description → vote → élimination</div>
+            <div class="step-item"><span class="step-num">6</span> Jusqu'à la victoire d'un camp</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

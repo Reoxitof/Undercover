@@ -16,6 +16,7 @@ let latestPlayers = [];
 // ─── DOM ELEMENTS ───
 const screens = {
   home: document.getElementById('screen-home'),
+  rules: document.getElementById('screen-rules'),
   lobby: document.getElementById('screen-lobby'),
   game: document.getElementById('screen-game'),
   vote: document.getElementById('screen-vote'),
@@ -324,6 +325,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = document.getElementById('player-name').value.trim();
     if (!name) { showToast('Entrez un nom de code', 'error'); return; }
     send({ type: 'create_room', name });
+  });
+
+  // Home — Rules
+  document.getElementById('btn-rules').addEventListener('click', () => {
+    showScreen('rules');
+  });
+
+  // Rules — Back
+  document.getElementById('btn-rules-back').addEventListener('click', () => {
+    showScreen('home');
   });
 
   // Home — Toggle Join
